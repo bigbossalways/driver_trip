@@ -1,6 +1,6 @@
 <?php
-include_once BASE_URL . './Database.class.php';
-
+include_once  'Database.class.php';
+define('BASE_URL', '/');
 class driverClass
 {
     private $db;

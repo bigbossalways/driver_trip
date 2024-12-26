@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('../constant.php');
+
 if (isset($_SESSION["lang"])) {
     include BASE_URL . "lang/" . $_SESSION["lang"] . '.php';
 } else {
