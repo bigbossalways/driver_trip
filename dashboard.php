@@ -1,6 +1,10 @@
 <?php
 include 'classes/Driver.class.php';
 include 'views/layout/header.php';
+// check if user is valid and logged in
+if (empty($_SESSION['user_id'])) {
+    header('location:login.php');
+}
 ?>
 
 <body class="sb-nav-fixed">

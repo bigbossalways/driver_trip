@@ -1,6 +1,5 @@
 <?php
 include_once  'Database.class.php';
-define('BASE_URL', '/');
 class driverClass
 {
     private $db;
@@ -10,9 +9,9 @@ class driverClass
         $this->db = new DataBaseClass('driver');
     }
 
-    public function findByEmail($email)
+    public function findByUsername($username)
     {
-        return $this->db->readBy('email', $email);
+        return $this->db->readBy('username', $username);
     }
 
     public function findById($id)

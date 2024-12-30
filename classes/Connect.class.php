@@ -1,12 +1,12 @@
 <?php
 session_start();
-include_once('../constant.php');
+include_once('constant.php');
 
 if (isset($_SESSION["lang"])) {
-    include BASE_URL . "lang/" . $_SESSION["lang"] . '.php';
+    include  "lang/" . $_SESSION["lang"] . '.php';
 } else {
     $_SESSION["lang"] = 'en';
-    include BASE_URL . "lang/en.php";
+    include  "lang/en.php";
 }
 class connectClass
 {

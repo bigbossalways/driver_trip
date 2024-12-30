@@ -3,15 +3,17 @@ include 'classes/Driver.class.php';
 include 'views/layout/header.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['inputEmail']);
+    $username = trim($_POST['inputUsername']);
     $password = md5(trim($_POST['inputPassword']));
 
     $userObj = new driverClass();
-    $user = $userObj->findByEmail($email);
+    $user = $userObj->findByUsername($username);
 
     if (!$user) {
+        die('koko');
         $error = "User not found";
     } else {
+        die('welcome');
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];

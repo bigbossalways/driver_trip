@@ -1,7 +1,7 @@
 <form action="" method="post">
     <div class="form-floating mb-3">
-        <input class="form-control" id="inputEmail" name="inputEmail" type="email" placeholder="name@example.com" />
-        <label for="inputEmail">Email address</label>
+        <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="user1" />
+        <label for="inputUsername"> Username</label>
     </div>
     <div class="form-floating mb-3">
         <input class="form-control" id="inputPassword" name="inputPassword" type="password" placeholder="Password" />
