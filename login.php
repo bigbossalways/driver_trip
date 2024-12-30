@@ -2,6 +2,8 @@
 include 'classes/Driver.class.php';
 include 'views/layout/header.php';
 
+$error = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['inputUsername']);
     $password = md5(trim($_POST['inputPassword']));
@@ -10,17 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $userObj->findByUsername($username);
 
     if (!$user) {
-        die('koko');
         $error = "User not found";
     } else {
-        die('welcome');
-        if (password_verify($password, $user['password'])) {
+        if ($password == $user['password']) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             header('Location:dashboard.php');
             exit();
         } else {
-            $error = "Invalid password.";
+            $error = "Invalid Username or password.";
         }
     }
 }

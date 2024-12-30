@@ -1,10 +1,12 @@
 <?php
-include 'classes/Driver.class.php';
+include 'classes/Trip.class.php';
 include 'views/layout/header.php';
 // check if user is valid and logged in
 if (empty($_SESSION['user_id'])) {
     header('location:login.php');
 }
+$tripObj = new TripClass();
+$tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
 ?>
 
 <body class="sb-nav-fixed">
@@ -26,11 +28,10 @@ if (empty($_SESSION['user_id'])) {
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -82,76 +83,42 @@ if (empty($_SESSION['user_id'])) {
                     <h1 class="mt-4">Tables</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tables</li>
+                        <li class="breadcrumb-item active">Trips</li>
                     </ol>
                     <div class="card mb-4">
-                        <div class="card-body">
-                            DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                            .
-                        </div>
+
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            Trips Table
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>License</th>
+                                        <th>departure</th>
+                                        <th>Arrival</th>
+                                        <th>init KM</th>
+                                        <th>Created date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </tfoot>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>Senior Javascript Developer</td>
-                                        <td>Edinburgh</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
 
+                                    <?php if (count($tripslist) > 0) : ?>
+                                        <?php foreach ($tripslist as $trip) : ?>
+                                            <tr>
+                                                <td> <?php echo $trip->license_plate_no ?></td>
+                                                <td> <?php echo $trip->departure ?></td>
+                                                <td><?php echo $trip->arrival ?></td>
+                                                <td><?php echo $trip->init_km ?></td>
+                                                <td><?php echo $trip->created_at ?></td>
+                                                <td><a class="btn btn-warning">Edit</a> / <a href="javascript:vodie(0);" onclick="DelTrip(<?php echo $trip->id ?>);" class="btn btn-danger">Delete</a></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
 
                                 </tbody>
                             </table>
@@ -166,6 +133,14 @@ if (empty($_SESSION['user_id'])) {
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+    <script>
+        function DelTrip(id) {
+            if (confirm('Are you sure ?')) {
+                alert('yes');
+            }
+
+        }
+    </script>
 </body>
 
 </html>

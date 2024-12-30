@@ -93,23 +93,20 @@ class DataBaseClass
         return $stmt->execute();
     }
 
-    public function getAll($offset = 0, $limit = 10, $roleId = null)
+    public function getAll($Column = null, $value)
     {
         $query = "SELECT * FROM {$this->tableName}";
 
-        if ($roleId !== null) {
-            $query .= " WHERE role_id = :role_id";
-        }
 
-        $query .= " LIMIT :offset, :limit";
+
+        $query .= " where :colmn = :value";
 
         $stmt = $this->conn->prepare($query);
 
-        if ($roleId !== null) {
-            $stmt->bindParam(':role_id', $roleId, PDO::PARAM_INT);
+        if ($Column !== null) {
+            $stmt->bindParam(':colmn', $Column, PDO::PARAM_STR);
+            $stmt->bindParam(param: ':value', $value, PDO::PARAM_INT);
         }
-        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
 
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
