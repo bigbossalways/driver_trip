@@ -93,7 +93,7 @@ class DataBaseClass
         return $stmt->execute();
     }
 
-    public function getAll($Column = null, $value)
+    public function getAll($Column = null, $value = null)
     {
         $query = "SELECT * FROM {$this->tableName}";
 
@@ -105,7 +105,7 @@ class DataBaseClass
 
         if ($Column !== null) {
             $stmt->bindParam(':colmn', $Column, PDO::PARAM_STR);
-            $stmt->bindParam(param: ':value', $value, PDO::PARAM_INT);
+            $stmt->bindParam(':value', $value, PDO::PARAM_INT);
         }
 
         $stmt->execute();
