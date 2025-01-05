@@ -6,7 +6,7 @@ if (empty($_SESSION['user_id'])) {
     header('location:login.php');
 }
 $tripObj = new TripClass();
-$tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
+// $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
 ?>
 
 <body class="sb-nav-fixed">
@@ -31,7 +31,7 @@ $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    <li><a class="dropdown-item" href="/logout.php">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -63,37 +63,9 @@ $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             Trips Table
-                            <button class="btn btn-success float-right" onclick="window.location.href='create_trip.php'">Add new</button>
                         </div>
-                        <div class=" card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th>License</th>
-                                        <th>departure</th>
-                                        <th>Arrival</th>
-                                        <th>init KM</th>
-                                        <th>Created date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <?php if (count($tripslist) > 0) : ?>
-                                        <?php foreach ($tripslist as $trip) : ?>
-                                            <tr>
-                                                <td> <?php echo $trip->license_plate_no ?></td>
-                                                <td> <?php echo $trip->departure ?></td>
-                                                <td><?php echo $trip->arrival ?></td>
-                                                <td><?php echo $trip->init_km ?></td>
-                                                <td><?php echo $trip->created_at ?></td>
-                                                <td><a class="btn btn-warning">Edit</a> / <a href="javascript:vodie(0);" onclick="DelTrip(<?php echo $trip->id ?>);" class="btn btn-danger">Delete</a></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            <?php include "views/create_trip_form.php"; ?>
                         </div>
                     </div>
                 </div>
