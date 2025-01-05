@@ -60,10 +60,9 @@ $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
 
                     </div>
                     <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Trips Table
-                            <button class="btn btn-success float-right" onclick="window.location.href='create_trip.php'">Add new</button>
+                        <div class="card-header d-flex align-items-center justify-content-between ">
+                            <div><i class="fas fa-table me-1"></i> Trips Table</div>
+                            <button class="btn btn-success" onclick="window.location.href='<?php echo BASE_URL; ?>/create_trip.php'">Add new</button>
                         </div>
                         <div class=" card-body">
                             <table id="datatablesSimple">

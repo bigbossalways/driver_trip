@@ -1,2 +1,2 @@
 <?php
-define('BASE_URL', '/');
+define('BASE_URL', '/driver_trip_git');

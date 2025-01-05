@@ -5,8 +5,26 @@ include 'views/layout/header.php';
 if (empty($_SESSION['user_id'])) {
     header('location:login.php');
 }
-$tripObj = new TripClass();
-// $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $data['License'] = trim($_POST['inputLicense']);
+    $data['Departure'] = trim($_POST['inputDeparture']);
+    $data['Arrival'] = trim($_POST['inputArrival']);
+    $data['initkm'] = trim($_POST['inputinitkm']);
+    $data['endkm'] = trim($_POST['inputendkm']);
+
+    $tripObj = new TripClass();
+    $trip = $tripObj->createTrip($data);
+
+    if (!$trip) {
+        $error = "Cannot insert recrod ";
+    } else {
+        $error = "Record inserted Successfully ";
+        header('Location:' . BASE_URL . '/dashboard.php');
+        exit();
+    }
+}
 ?>
 
 <body class="sb-nav-fixed">
