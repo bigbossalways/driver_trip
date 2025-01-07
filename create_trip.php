@@ -26,6 +26,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<style>
+    .dateandtime {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        border-color: #6b7280;
+        border-width: 1px;
+        border-radius: 0;
+        padding-top: 0.5rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+</style>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -91,8 +108,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php include 'views/layout/footer.php'; ?>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL ?>/js/jquery.dateandtime.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
     <script>
@@ -102,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
         }
+        $('.dateandtime').dateAndTime();
     </script>
 </body>
 

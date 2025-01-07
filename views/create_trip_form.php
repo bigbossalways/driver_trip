@@ -3,13 +3,15 @@
                 <input class="form-control" id="inputLicense" name="inputLicense" type="text" placeholder="License No" />
                 <label for="inputLicense"> License</label>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputDeparture" name="inputDeparture" type="number" placeholder="Departure Time" />
+            <div>
                 <label for="inputDeparture">Departure</label>
+                <input class=" dateandtime" id="inputDeparture" name="inputDeparture" type="text" placeholder="Departure Time" />
+
+                <label for="inputArrival">Arrival Time</label>
+                <input class=" dateandtime" id="inputArrival" name="inputArrival" type="text" placeholder="Arrival Time" />
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="inputArrival Time" name="inputArrival Time" type="number" placeholder="Arrival Time" />
-                <label for="inputArrival Time">Arrival Time</label>
+            <div class="form-floating mb-3 col-md-8">
+
             </div>
 
             <div class="form-floating mb-3">
