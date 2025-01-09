@@ -102,16 +102,18 @@ class DataBaseClass
 
 
         if ($Column !== null) {
-            $query .= " where :colmn = :value";
-            $stmt = $this->conn->prepare($query,);
+            $query .= " where $Column = '$value'";
             //$stmt->bindParam(':colmn', $Column, PDO::PARAM_STR);
 
-            $stmt->bindParam(":colmn", $Column);
-            $stmt->bindParam(":value", $value);
+            // $stmt->bindParam(":colmn", $Column);
+            // $stmt->bindParam(":value", $value);
             //$stmt->bindParam(':value', $value, PDO::PARAM_INT);
-        }
+        } //else {
+        //     $stmt = $this->conn->prepare($query);
+        // }
+        $stmt = $this->conn->prepare($query);
 
-        print $query;
+        // print $query;
 
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

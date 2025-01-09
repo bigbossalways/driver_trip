@@ -7,8 +7,8 @@ if (empty($_SESSION['user_id'])) {
 }
 $tripObj = new TripClass();
 $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
-print_r($tripslist);
-die();
+/*print_r($tripslist);
+die();*/
 ?>
 
 <body class="sb-nav-fixed">
@@ -83,12 +83,12 @@ die();
                                     <?php if (count($tripslist) > 0) : ?>
                                         <?php foreach ($tripslist as $trip) : ?>
                                             <tr>
-                                                <td> <?php echo $trip->license_plate_no ?></td>
-                                                <td> <?php echo $trip->departure ?></td>
-                                                <td><?php echo $trip->arrival ?></td>
-                                                <td><?php echo $trip->init_km ?></td>
-                                                <td><?php echo $trip->created_at ?></td>
-                                                <td><a class="btn btn-warning">Edit</a> / <a href="javascript:vodie(0);" onclick="DelTrip(<?php echo $trip->id ?>);" class="btn btn-danger">Delete</a></td>
+                                                <td> <?php echo $trip['license_plate_no'] ?></td>
+                                                <td> <?php echo $trip['departure'] ?></td>
+                                                <td><?php echo $trip['arrival'] ?></td>
+                                                <td><?php echo $trip['init_km'] ?></td>
+                                                <td><?php echo $trip['created_at'] ?></td>
+                                                <td><a class="btn btn-warning">Edit</a> / <a href="javascript:vodie(0);" onclick="DelTrip(<?php echo $trip['id'] ?>);" class="btn btn-danger">Delete</a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
