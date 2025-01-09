@@ -8,11 +8,12 @@ if (empty($_SESSION['user_id'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data['License'] = trim($_POST['inputLicense']);
-    $data['Departure'] = trim($_POST['inputDeparture']);
-    $data['Arrival'] = trim($_POST['inputArrival']);
-    $data['initkm'] = trim($_POST['inputinitkm']);
-    $data['endkm'] = trim($_POST['inputendkm']);
+    $data['license_plate_no'] = trim($_POST['inputLicense']);
+    $data['departure'] = trim($_POST['inputDeparture']);
+    $data['arrival'] = trim($_POST['inputArrival']);
+    $data['init_km'] = trim($_POST['inputinitkm']);
+    $data['end_km'] = trim($_POST['inputendkm']);
+    $data['driver_id'] = $_SESSION['user_id'];
 
     $tripObj = new TripClass();
     $trip = $tripObj->createTrip($data);

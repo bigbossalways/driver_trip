@@ -24,6 +24,6 @@
             </div>
             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                 <p>&nbsp;</p>
-                <button class="btn btn-primary" type="submit">Login</button>
+                <button class="btn btn-primary" type="submit">Save</button>
             </div>
         </form>

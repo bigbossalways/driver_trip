@@ -7,6 +7,8 @@ if (empty($_SESSION['user_id'])) {
 }
 $tripObj = new TripClass();
 $tripslist = $tripObj->getAllTrips('driver_id', $_SESSION['user_id']);
+print_r($tripslist);
+die();
 ?>
 
 <body class="sb-nav-fixed">
